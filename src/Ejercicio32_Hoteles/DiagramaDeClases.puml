@@ -1,0 +1,99 @@
+@startuml
+
+' Clases
+class Hotel {
+  +hotel_id : int
+  +nombre_hotel : String
+  +categoria_estrella : int
+  +direccion : String
+  +telefono_contacto : String
+  +director_id : int
+}
+
+class Empleado {
+  +empleado_id : int
+  +nombre : String
+  +apellido : String
+  +dni : String
+  +cargo : String
+  +salario : float
+  +tipo_empleado : String
+}
+
+class Habitacion {
+  +habitacion_id : int
+  +numero_habitacion : int
+  +tipo_habitacion : String
+  +precio_noche : float
+  +estado : String
+}
+
+class Cliente {
+  +cliente_id : int
+  +dni : String
+  +nombre : String
+  +apellido : String
+  +telefono : String
+  +correo_electronico : String
+  +direccion : String
+}
+
+class Reserva {
+  +reserva_id : int
+  +fecha_reserva : Date
+  +fecha_entrada : Date
+  +fecha_salida : Date
+  +estado : String
+}
+
+class Estancia {
+  +estancia_id : int
+  +fecha_inicio_estancia : Date
+  +fecha_fin_estancia : Date
+  +numero_personas : int
+}
+
+class Suplemento {
+  +suplemento_id : int
+  +tipo_suplemento : String
+  +descripcion : String
+  +monto : float
+  +fecha_inicio : Date
+  +fecha_fin : Date
+}
+
+class Actividad {
+  +actividad_id : int
+  +nombre_actividad : String
+  +horario : String
+  +descripcion : String
+  +tipo_actividad : String
+  +precio_persona : float
+}
+
+class Factura {
+  +factura_id : int
+  +fecha_emision : Date
+  +dias_estancia : int
+  +precio_total_habitaciones : float
+  +precio_total_suplementos : float
+  +precio_total_actividades : float
+  +precio_total_final : float
+}
+
+' Relaciones
+Hotel "1" -- "0..*" Empleado : trabaja_en
+Hotel "1" -- "0..*" Habitacion : tiene
+Cliente "1" -- "0..*" Reserva : realiza
+Hotel "1" -- "0..*" Reserva : recibe_reserva
+Reserva "1" -- "0..1" Estancia : genera
+Cliente "1" -- "0..*" Estancia : disfruta
+Estancia "1" -- "1..*" Habitacion : ocupa
+Hotel "1" -- "0..*" Suplemento : ofrece
+Estancia "0..*" -- "0..*" Suplemento : disfruta_suplemento
+Hotel "1" -- "0..*" Actividad : organiza
+Empleado "1" -- "0..*" Actividad : lidera
+Cliente "0..*" -- "0..*" Actividad : participa_en
+Reserva "1" -- "1" Factura : se_factura
+
+@enduml
