@@ -17,10 +17,10 @@ class Usuario {
 
 class Hotel {
   - int hotelId;
-  - String nombreHotel;
-  - int categoriaEstrella;
+  - String nombre_hotel;
+  - int categoria_estrella;
   - String direccion;
-  - String telefonoContacto;
+  - String telefono_contacto;
   - List<Empleado> empleados;
   - List<Habitacion> habitaciones;
   - List<Reserva> reservasRecibidas;
@@ -51,12 +51,12 @@ class Habitacion {
 }
 
 class Cliente {
-  - int clienteId;
+  - int cliente_Id;
   - String dni;
   - String nombre;
   - String apellido;
   - String telefono;
-  - String correoElectronico;
+  - String correo_Electronico;
   - String direccion;
   - List<Reserva> reservas;
   - List<Estancia> estancias;
@@ -75,16 +75,16 @@ class Reserva {
 }
 
 class Estancia {
-  - int estanciaId;
-  - Date fechaInicioEstancia;
-  - Date fechaFinEstancia;
-  - int numeroPersonas;
+  - int estancia_Id;
+  - Date fecha_inicio_estancia;
+  - Date fecha_fin_estancia;
+  - int numero_personas;
   - List<Habitacion> habitaciones;
   - List<Suplemento> suplementos;
 }
 
 class Suplemento {
-  - int suplementoId;
+  - int suplemento_Id;
   - TipoSuplemento tipoSuplemento;
   - String descripcion;
   - float monto;
@@ -94,17 +94,17 @@ class Suplemento {
 }
 
 class Actividad {
-  - int actividadId;
-  - NombreActividad nombreActividad;
+  - int actividad_id;
+  - NombreActividad nombre_actividad;
   - String horario;
   - String descripcion;
-  - String tipoActividad;
-  - float precioPersona;
+  - String tipo_actividad;
+  - float precio_persona;
   - List<Cliente> clientesParticipantes;
 }
 
 class Factura {
-  - int facturaId;
+  - int factura_Id;
   - int reservaId;
   - Date fechaEmision;
   - int diasEstancia;
