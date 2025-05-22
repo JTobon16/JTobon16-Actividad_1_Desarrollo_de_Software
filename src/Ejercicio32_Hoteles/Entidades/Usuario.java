@@ -7,17 +7,33 @@ package Ejercicio32_Hoteles.Entidades;
 import java.io.Serializable;
 import Ejercicio32_Hoteles.Enumeraciones.RolUsuario;
 import java.util.Objects;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.Id;
 /**
  *
  * @author altoc
+ * 
  */
+@Entity(name = "Usuarios")
 public class Usuario implements Serializable {
+    @Id
+    @Column (name = "ID", length = 20)
     protected String codigo;
+    @Column(nullable = false, length = 64)
     protected String password;
+    @Column(nullable = false, length = 50)
     protected String nombre;
+    @Column(nullable = false, length = 50)
     protected String apellido;
+    @Column(nullable = false, length = 10, unique = true)
     protected String dni;
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false, length = 20)
     protected RolUsuario rol;
+    @Column(nullable = false, unique = true, length = 100)
     protected String email;
 
     // constructor por defecto
