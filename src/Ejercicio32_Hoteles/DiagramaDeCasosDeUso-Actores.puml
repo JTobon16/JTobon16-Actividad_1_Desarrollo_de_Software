@@ -1,0 +1,9 @@
+@startuml
+:Usuario: as User
+:Administrador: as Admin
+:Recepcionista: as Recep
+
+User <|-- Admin
+User <|-- Recep
+
+@enduml
