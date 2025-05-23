@@ -19,6 +19,7 @@ import javax.persistence.Id;
  */
 @Entity(name = "Usuarios")
 public class Usuario implements Serializable {
+    private static final long serialVersionUID = 0L;
     @Id
     @Column (name = "ID", length = 20)
     protected String codigo;

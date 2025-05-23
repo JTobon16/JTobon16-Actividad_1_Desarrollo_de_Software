@@ -4,23 +4,49 @@
  */
 package Ejercicio32_Hoteles.Entidades;
 
+import java.io.Serializable;
 import java.util.List;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 /**
  *
  * @author altoc
  */
-public class Hotel {
+@Entity(name = "Hoteles")
+public class Hotel implements Serializable{
+    
+     private static final long serialVersionUID = 1L;
+     
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "hotel_id") 
     private int hotelId;
+    @Column(name = "nombre_hotel", nullable = false, length = 100)
     private String nombre_hotel;
+    @Column(name = "categoria_estrella", nullable = false)
     private int categoria_estrella;
+    @Column(name = "direccion", length = 150)
     private String direccion;
+    @Column(name = "telefono_contacto", length = 20)
     private String telefono_contacto;
+    
+    @OneToMany(mappedBy = "hotel", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Empleado> empleados;
+    @OneToMany(mappedBy = "hotel", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Habitacion> habitaciones;
+    @OneToMany(mappedBy = "hotel", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Reserva> reservasRecibidas;
+    @OneToMany(mappedBy = "hotel", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Suplemento> suplementos;
+    @OneToMany(mappedBy = "hotel", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Actividad> actividades;
+    
 
     
     //constructor por defecto

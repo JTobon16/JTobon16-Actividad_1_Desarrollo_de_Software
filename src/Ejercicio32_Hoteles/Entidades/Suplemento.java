@@ -4,20 +4,50 @@
  */
 package Ejercicio32_Hoteles.Entidades;
 import Ejercicio32_Hoteles.Enumeraciones.TipoSuplemento;
+import java.io.Serializable;
 import java.util.Date;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  *
  * @author altoc
  */
-public class Suplemento {
+@Entity (name = "Suplementos")
+public class Suplemento implements Serializable{
+    
+    private static final long serialVersionUID = 0L;
+    
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int suplemento_Id;
+    
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false, length = 30)
     private TipoSuplemento tipoSuplemento;
+    @Column(length = 255)
     private String descripcion;
+    @Column(nullable = false)
     private float monto;
+    @Temporal(TemporalType.DATE)
+    @Column(name = "fecha_inicio", nullable = false)
     private Date fechaInicio;
+    @Temporal(TemporalType.DATE)
+    @Column(name = "fecha_fin", nullable = false)
     private Date fechaFin;
-    private int hotelId;
+   
+    @ManyToOne(optional = false) 
+    @JoinColumn(name = "hotel_id",referencedColumnName = "id")
+    private Hotel hotel;
 
     
     //constructor por defecto
@@ -27,14 +57,14 @@ public class Suplemento {
     //constructor con parametros
 
     public Suplemento(int suplemento_Id, TipoSuplemento tipoSuplemento, String descripcion,
-            float monto, Date fechaInicio, Date fechaFin, int hotelId) {
+            float monto, Date fechaInicio, Date fechaFin, Hotel hote) {
         this.suplemento_Id = suplemento_Id;
         this.tipoSuplemento = tipoSuplemento;
         this.descripcion = descripcion;
         this.monto = monto;
         this.fechaInicio = fechaInicio;
         this.fechaFin = fechaFin;
-        this.hotelId = hotelId;
+        this.hotel = hotel;
     }
     
     //set and get
@@ -87,12 +117,12 @@ public class Suplemento {
         this.fechaFin = fechaFin;
     }
 
-    public int getHotelId() {
-        return hotelId;
+    public Hotel getHotel() {
+        return hotel;
     }
 
-    public void setHotelId(int hotelId) {
-        this.hotelId = hotelId;
+    public void setHotelId(Hotel hotel) {
+        this.hotel = hotel;
     }
     
     
@@ -124,7 +154,11 @@ public class Suplemento {
 
     @Override
     public String toString() {
-        return "Suplemento{" + "suplemento_Id=" + suplemento_Id + ", tipoSuplemento=" + tipoSuplemento + ", descripcion=" + descripcion + ", monto=" + monto + ", fechaInicio=" + fechaInicio + ", fechaFin=" + fechaFin + ", hotelId=" + hotelId + '}';
+        return "Suplemento{" + "suplemento_Id=" + suplemento_Id +
+                ", tipoSuplemento=" + tipoSuplemento + ", descripcion=" + 
+                descripcion + ", monto=" + monto + ", fechaInicio=" +
+                fechaInicio + ", fechaFin=" + fechaFin + ", hotelId=" + 
+                hotel + '}';
     }
     
     
